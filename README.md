@@ -1,6 +1,6 @@
 # pp-fe-assignment
 
-This project is only for demonstration coding skills.
+This project is only to demonstrate coding skills.
 
 ## Project Setup
 
