@@ -2,8 +2,6 @@
 <div>
   <Navbar></Navbar>
   <router-view/>
-  
-
 </div>
 </template>
 
@@ -19,8 +17,4 @@ export default {
 
 <style>
 @import './assets/base.css';
-
-#app {
-
-}
 </style>

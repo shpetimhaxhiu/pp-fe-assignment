@@ -1,14 +1,19 @@
 <template>
   <div class="container py-3">
     <h2 class="fs-1 py-4">Users list</h2>
-    <div v-if="repositories.length > 0">
-      <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col" v-for="repo in repositories" :key="repo.id">
+    <div v-if="loadedUsers">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div
+          class="col"
+          v-for="(user, index) in loadedUsers.data"
+          :key="user.id"
+        >
           <UserCard
-            :key="repo.id"
-            :avatar="repo.avatar_url"
-            :url="repo.url"
-            :username="repo.login"
+            :key="user.id"
+            :avatar="user.avatar_url"
+            :url="user.html_url"
+            :username="user.login"
+            :userId="index"
           ></UserCard>
         </div>
       </div>
@@ -17,6 +22,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 import UserCard from "@/components/UserCard.vue";
 
@@ -25,22 +31,22 @@ export default {
     UserCard,
   },
   name: "Users",
-  data() {
-    return {
-      repositories: [],
-      errors: [],
-    };
+  computed: {
+    ...mapGetters({ loadedUsers: "usersList" }),
   },
 
-  async created() {
-    try {
-      const response = await axios.get(
-        `https://api.github.com/users?page=1&per_page=10`
-      );
-      this.repositories = response.data;
-    } catch (e) {
-      this.errors.push(e);
-    }
+  methods: {
+    ...mapActions(["updateUsersList", "removeUser"]),
+
+    removeUser(id) {
+      if (confirm("Are you sure you want to delete this user?")) {
+        this.loadedUsers.data.splice(id, 1);
+      }
+    },
+  },
+
+  created() {
+    this.updateUsersList();
   },
 };
 </script>
