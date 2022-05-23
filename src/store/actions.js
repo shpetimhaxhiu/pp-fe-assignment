@@ -1,4 +1,4 @@
-import APIWrapper from '@/api'
+import APIWrapper from '../api'
 
 const API = new APIWrapper();
 

@@ -12,32 +12,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import axios from "axios";
-import UserCard from "@/components/UserCard.vue";
 
 export default {
-  components: {
-    UserCard,
-  },
-  name: "Users",
-  computed: {
-    ...mapGetters({ loadedUsers: "usersList" }),
-  },
-
-  methods: {
-    ...mapActions(["updateUsersList", "removeUser"]),
-
-    removeUser(id) {
-      if (confirm("Are you sure you want to delete this user?")) {
-        this.loadedUsers.data.splice(id, 1);
-      }
-    },
-  },
-
-  created() {
-    this.updateUsersList();
-  },
+  name: "Home"
 };
 </script>
 

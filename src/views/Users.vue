@@ -23,8 +23,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import axios from "axios";
-import UserCard from "@/components/UserCard.vue";
+import UserCard from ".././components/UserCard.vue";
 
 export default {
   components: {
