@@ -16,8 +16,8 @@
         "dev": "vite",
         "build": "vite build",
         "serve": "vite preview",
-        "test": "npx cypress open-ct",
-        "test:headless": "npx cypress run-ct"
+        "test": "npx cypress run --headed --no-exit",
+        "test:headless": "npx cypress run --headless"
     },
     "dependencies": {
 
