@@ -1,8 +1,14 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "../views/Home.vue";
 import Users from "../views/Users.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes = [{
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: NotFound
+    },
+    {
         path: "/",
         name: "Index",
         component: Home,
@@ -22,6 +28,7 @@ const routes = [{
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    linkActiveClass: 'active',
 });
 
 export default router;

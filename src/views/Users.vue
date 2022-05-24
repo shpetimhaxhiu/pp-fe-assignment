@@ -1,6 +1,12 @@
 <template>
   <div class="container py-3">
-    <div v-if="hasError" class="mt-3">
+    <div class="text-center" v-if="isLoading" >
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+   
+    <div v-if="hasError && !isLoading" class="mt-3">
       <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">Couldn`t get the users!</h4>
         <p>{{ hasError }}</p>
@@ -11,8 +17,8 @@
       </div>
     </div>
     <div v-else>
+    <div v-if="loadedUsers.data.length > 0 && !isLoading">
     <h2 class="fs-1 py-4">Users list</h2>
-    <div v-if="loadedUsers">
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div
           class="col"
@@ -29,12 +35,12 @@
         </div>
       </div>
     </div>
-
     <div
-      v-if="!loaded"
+      v-if="!loaded && !isLoading"
       class="d-flex flex-column text-center justify-content-center p-5"
     >
-      <div><p>There are users loaded</p></div>
+      <div>
+        <p>There are no users loaded</p></div>
       <div class="w-20">
         <button
           type="button"
@@ -46,7 +52,6 @@
       </div>
     </div>
     </div>
-
   </div>
 </template>
 
@@ -64,6 +69,7 @@ export default {
       loadedUsers: "usersList",
       loaded: "haveUsers",
       hasError: "hasError",
+      isLoading: "isLoading",
     }),
   },
 
@@ -84,11 +90,11 @@ export default {
   created() {
     // Get users only when there are none loaded
     if (!this.loaded) {
-      this.updateUsersList();
+      this.updateUsersList()
     }
   },
 };
 </script>
 
-<style>
+<style scoped>
 </style>

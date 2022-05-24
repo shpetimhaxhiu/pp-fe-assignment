@@ -7,6 +7,7 @@ const state = {
     usersList: [],
     haveUsers: false,
     hasError: null,
+    isLoading: false
 }
 
 export const store = createStore({

@@ -19,6 +19,14 @@ const mutations = {
 
     SET_ERROR(state, message) {
         state.hasError = message
+    },
+
+    SET_LOADING(state) {
+        state.isLoading = true
+    },
+
+    UNSET_LOADING(state) {
+        state.isLoading = false
     }
 }
 
