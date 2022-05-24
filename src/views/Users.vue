@@ -17,7 +17,7 @@
       </div>
     </div>
     <div v-else>
-    <div v-if="loadedUsers.data.length > 0 && !isLoading">
+    <div v-if="loaded && !isLoading ">
     <h2 class="fs-1 py-4">Users list</h2>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div
