@@ -19,3 +19,17 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Running Tests
+
+For running tests make sure the server is running 
+
+```sh
+npm run dev
+```
+
+Then run 
+
+```sh
+npm run test OR npm run test:headless
+```
