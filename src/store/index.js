@@ -5,7 +5,8 @@ import mutations from './mutations'
 
 const state = {
     usersList: [],
-    haveUsers: false
+    haveUsers: false,
+    hasError: null,
 }
 
 export const store = createStore({

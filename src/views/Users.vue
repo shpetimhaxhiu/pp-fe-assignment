@@ -1,5 +1,16 @@
 <template>
   <div class="container py-3">
+    <div v-if="hasError" class="mt-3">
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Couldn`t get the users!</h4>
+        <p>{{ hasError }}</p>
+        <hr />
+        <p class="mb-0">
+          <a href="" @click="updateUsersList()" class="text-black">Try again</a>
+        </p>
+      </div>
+    </div>
+    <div v-else>
     <h2 class="fs-1 py-4">Users list</h2>
     <div v-if="loadedUsers">
       <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -18,12 +29,24 @@
         </div>
       </div>
     </div>
-    <div v-if="!loaded" class="d-flex flex-column text-center justify-content-center p-5">
-        <div><p>There are users loaded</p></div>
-        <div class="w-20">
-            <button type="button" @click="updateUsersList()" class="btn btn-primary w-20">Get users</button>
-        </div>
+
+    <div
+      v-if="!loaded"
+      class="d-flex flex-column text-center justify-content-center p-5"
+    >
+      <div><p>There are users loaded</p></div>
+      <div class="w-20">
+        <button
+          type="button"
+          @click="updateUsersList()"
+          class="btn btn-primary w-20"
+        >
+          Get users
+        </button>
+      </div>
     </div>
+    </div>
+
   </div>
 </template>
 
@@ -37,7 +60,11 @@ export default {
   },
   name: "Users",
   computed: {
-    ...mapGetters({ loadedUsers: "usersList", loaded: "haveUsers" }),
+    ...mapGetters({
+      loadedUsers: "usersList",
+      loaded: "haveUsers",
+      hasError: "hasError",
+    }),
   },
 
   methods: {
@@ -48,7 +75,7 @@ export default {
         this.loadedUsers.data.splice(id, 1);
       }
       // Update state if last one is removed
-      if(this.loadedUsers.data.length==0){
+      if (this.loadedUsers.data.length == 0) {
         this.setUnloaded();
       }
     },
@@ -56,7 +83,7 @@ export default {
 
   created() {
     // Get users only when there are none loaded
-    if(!this.loaded){
+    if (!this.loaded) {
       this.updateUsersList();
     }
   },

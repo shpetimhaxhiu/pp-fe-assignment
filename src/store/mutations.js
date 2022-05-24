@@ -15,6 +15,10 @@ const mutations = {
     REMOVE_USER(state, id) {
         index = state.usersList.findIndex(user => user.id == id);
         state.usersList.splice(index, 1);
+    },
+
+    SET_ERROR(state, message) {
+        state.hasError = message
     }
 }
 

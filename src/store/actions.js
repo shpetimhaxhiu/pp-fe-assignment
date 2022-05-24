@@ -14,7 +14,7 @@ const actions = {
                 commit('SET_LOADED')
             })
             .catch((err) => {
-                commit('SET_LIST', err)
+                commit('SET_ERROR', err.message)
             })
     },
 
