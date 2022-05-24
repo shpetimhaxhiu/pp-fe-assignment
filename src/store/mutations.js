@@ -2,6 +2,14 @@ const mutations = {
 
     SET_LIST(state, payload) {
         state.usersList = payload
+        state.haveUsers = true
+    },
+    SET_LOADED(state) {
+        state.haveUsers = true
+    },
+
+    SET_UNLOADED(state) {
+        state.haveUsers = false
     },
 
     REMOVE_USER(state, id) {
